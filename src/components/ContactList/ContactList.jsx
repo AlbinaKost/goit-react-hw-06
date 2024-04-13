@@ -1,7 +1,20 @@
 import css from './ContactList.module.css';
 import Contact from '../Contact/Contact';
+import { selectContacts } from '../../redux/contactsSlice';
+import { selectNameFilter } from '../../redux/filtersSlice';
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+
+const ContactList = () =>{
+const contacts = selectContacts();
+const filters = selectNameFilter();
+
+const filterContacts =
+filters.trim() === ''
+  ? contacts.slice()
+  : contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filters.toLowerCase())
+    );
+
   return (
     <ul className={css.contactList}>
       {contacts.map(contact => {
