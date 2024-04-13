@@ -29,8 +29,8 @@ const ContactForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+  const handleSubmit = (e, actions) => {
+    dispatch(addContact(e.name, e.number));
     actions.resetForm();
   };
 
@@ -40,7 +40,7 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       validationSchema={FormValidationSchema}
     >
-      <Form className={css.form}>
+      <Form className={css.formBox}>
         <div className={css.inputForm}>
           <label className={css.labelText} htmlFor={nameFieldId}>
             Username
@@ -64,6 +64,4 @@ const ContactForm = () => {
   );
 };
 
-
-
-export default ContactForm
+export default ContactForm;
